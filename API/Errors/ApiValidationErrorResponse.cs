@@ -1,4 +1,6 @@
-﻿namespace API.Errors
+﻿using System.Collections.Generic;
+
+namespace API.Errors
 {
     public sealed class ApiValidationErrorResponse : ApiResponse
     {
