@@ -21,6 +21,7 @@
     "enableI18nLegacyMessageIdFormat": false,
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "strictDomEventTypes": false,
   }
 }
