@@ -1,5 +1,6 @@
 ﻿using Core.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Reflection;
 
 namespace Infrastructure.Data

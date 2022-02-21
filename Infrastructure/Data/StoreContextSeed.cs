@@ -1,6 +1,11 @@
 ﻿using Core.Entities;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace Infrastructure.Data
 {
@@ -14,9 +19,7 @@ namespace Infrastructure.Data
                 {
                     var brandsData = await File.ReadAllTextAsync("../Infrastructure/Data/SeedData/brands.json");
                     var brands = JsonSerializer.Deserialize<IReadOnlyList<ProductBrand>>(brandsData);
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
                     foreach (var item in brands)
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
                     {
                         await context.ProductBrands.AddAsync(item);
                     }
@@ -26,9 +29,7 @@ namespace Infrastructure.Data
                 {
                     var typesData = await File.ReadAllTextAsync("../Infrastructure/Data/SeedData/types.json");
                     var types = JsonSerializer.Deserialize<IReadOnlyList<ProductType>>(typesData);
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
                     foreach (var item in types)
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
                     {
                         await context.ProductTypes.AddAsync(item);
                     }
@@ -38,9 +39,7 @@ namespace Infrastructure.Data
                 {
                     var productsData = await File.ReadAllTextAsync("../Infrastructure/Data/SeedData/products.json");
                     var products = JsonSerializer.Deserialize<IReadOnlyList<Product>>(productsData);
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
                     foreach (var item in products)
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
                     {
                         await context.Products.AddAsync(item);
                     }
