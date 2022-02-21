@@ -1,4 +1,4 @@
-import { Injectable, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -15,7 +15,8 @@ export class ErrorInterceptor implements HttpInterceptor {
   constructor(private router: Router, private toastr: ToastrService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    return next.handle(request).pipe(catchError(error => {
+    return next.handle(request).pipe(
+    catchError(error => {
       if (error) {
         if (error.status === 400) {
           if (error.error.errors) {
