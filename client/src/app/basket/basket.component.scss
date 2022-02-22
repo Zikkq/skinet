@@ -1,0 +1,12 @@
+a.text-dark {
+    text-decoration: none;
+}
+
+a.text-dark:focus,a.text-dark:hover {
+    color: #3e152b!important;
+    text-decoration: underline;
+}
+
+a.text-danger:hover {
+    color: #8B0000!important;
+}
