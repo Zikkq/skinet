@@ -4,8 +4,8 @@ And also trying to hit endpoint with Authorize attribute being unauthorized sudd
 receieving 401 code.
 
 Environment:
-Windows 11
-.NET 6.0.2
-Angular 13.2.3
-Node: 16.14.0
-npm: 8.5.0
+Windows 11, 
+.NET 6.0.2, 
+Angular 13.2.3, 
+Node: 16.14.0, 
+npm: 8.5.0,
