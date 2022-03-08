@@ -1,7 +1,5 @@
 # skinet
-Currently stucked with the permanent Postman warning occurs after no matter what request(GET, POST, DELETE etc.) has sent and what endpoint has hit.
-And also trying to hit endpoint with Authorize attribute being unauthorized suddenly sends 0 status code to the StatusCodePagesWithReExecute middleware but Postman still
-receieving 401 code.
+There's warning(Unable to verify first certificate) occurs after hit no matter what endpoint (GET, POST, PUT, etc.). Even if they don't need an authorization, even if SSL verfication has turned off, even valid development https cerificate has presented in Trusted Root Certificaton Authorities and even even after add this certificate to CA Certificates in Postman. But anyway each endpoint works great and return consistent response as would expected.
 
 Environment:
 Windows 11, 
