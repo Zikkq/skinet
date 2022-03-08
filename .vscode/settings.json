@@ -1,8 +1,0 @@
-{
-    "files.exclude": {
-        "**/bin": true,
-        "**/obj": true
-    },
-    "csharpextensions.privateMemberPrefix": "_",
-    "csharpextensions.useThisForCtorAssignments": false
-}
