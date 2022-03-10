@@ -20,7 +20,7 @@ namespace API.Extensions
             {
                 options.InvalidModelStateResponseFactory = actionContext =>
                 {
-                    var errors = actionContext.ModelState.Where(e => e.Value.Errors.Any()).SelectMany(x => x.Value.Errors).Select(x => x.ErrorMessage).ToArray();
+                    var errors = actionContext.ModelState.Where(e => e.Value.Errors.Any()).SelectMany(x => x.Value.Errors).Select(x => x.ErrorMessage);
                     var response = new ApiValidationErrorResponse { Errors = errors };
                     return new BadRequestObjectResult(response);
                 };
