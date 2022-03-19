@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
     this.createRegisterForm();
   }
 
-  createRegisterForm() {
+  private createRegisterForm() {
     this.registerForm =  this.fb.group({
       displayName: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')], [this.validateEmailNotTaken()]],
@@ -27,14 +27,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    this.accountService.register(this.registerForm.value).subscribe({next: response => this.router.navigateByUrl('/shop'), error: error => {
-      console.log(error);
-      this.errors = error.errors;
-    }});
-  }
-
-  validateEmailNotTaken(): AsyncValidatorFn {
+  private validateEmailNotTaken(): AsyncValidatorFn {
     return control => {
       return timer(500).pipe(switchMap(() => {
         if (!control.value) {
@@ -43,5 +36,12 @@ export class RegisterComponent implements OnInit {
         return this.accountService.checkEmailExists(control.value).pipe(map(res => res ? {emailExists: true} : null));
       }));
     }
+  }
+
+  onSubmit() {
+    this.accountService.register(this.registerForm.value).subscribe({next: response => this.router.navigateByUrl('/shop'), error: error => {
+      console.log(error);
+      this.errors = error.errors;
+    }});
   }
 }

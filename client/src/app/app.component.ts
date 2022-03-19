@@ -17,12 +17,12 @@ export class AppComponent implements OnInit{
     this.loadCurrentUser();
   }
 
-  loadCurrentUser() {
+  private loadCurrentUser() {
     const token = localStorage.getItem('token');
     this.accountService.loadCurrentUser(token).subscribe({next: () => console.log('loaded user'), error: error => console.log(error)});
   }
 
-  loadBasket() {
+  private loadBasket() {
     const basketId = localStorage.getItem('basket_id');
     if (basketId) {
       this.basketService.getBasket(basketId).subscribe({
