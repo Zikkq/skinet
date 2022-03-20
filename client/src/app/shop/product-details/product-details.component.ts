@@ -22,7 +22,7 @@ export class ProductDetailsComponent implements OnInit {
     this.loadProduct();
   }
 
-  loadProduct() {
+  private loadProduct() {
     this.shopService.getProduct(+this.activatedRoute.snapshot.paramMap.get('id')).subscribe({next: product => {
       this.product = product;
       this.bcService.set('@productDetails', product.name);

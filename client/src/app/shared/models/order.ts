@@ -22,7 +22,7 @@ export interface IOrder {
 export interface IOrderItem {
     productId:   number;
     productName: string;
-    pcitureUrl:  string;
+    pictureUrl:  string;
     price:       number;
     quantity:    number;
 }

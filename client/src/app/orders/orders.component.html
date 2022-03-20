@@ -1,0 +1,28 @@
+<div class="container mt-1">
+    <table class="table">
+        <thead class="table-light">
+            <tr>
+                <th class="border-0" scope="col">
+                    <div class="p-2 px-3 text-uppercase">Id</div>
+                </th>
+                <th class="border-0" scope="col">
+                    <div class="py-2 text-uppercase">Date Ordered</div>
+                </th>
+                <th class="border-0" scope="col">
+                    <div class="py-2 text-uppercase">Total</div>
+                </th>
+                <th class="border-0" scope="col">
+                    <div class="py-2 text-uppercase">Status</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of orders" routerLink="/orders/{{order.id}}" style="cursor: pointer;">
+                <td class="align-middle">{{order.id}}</td>
+                <td class="align-middle">{{order.orderDate | date}}</td>
+                <td class="align-middle">{{order.total | currency}}</td>
+                <td class="align-middle">{{order.status}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
