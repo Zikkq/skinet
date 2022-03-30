@@ -6,6 +6,7 @@ export interface IBasket {
     clientSecret?: string;
     paymentIntentId?: number;
     deliveryMethodId: number;
+    shippingPrice?: number;
 }
 
 export interface IBasketItem {
@@ -21,8 +22,6 @@ export interface IBasketItem {
 export class Basket implements IBasket {
     id = uuidv4();
     items: IBasketItem[] = [];
-    clientSecret?: string;
-    paymentIntentId?: number;
     deliveryMethodId: number;
 }
 
