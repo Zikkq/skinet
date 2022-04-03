@@ -4,15 +4,17 @@
             <ng-container *ngIf="types && brands">
                 <h5 class="text-warning ms-3 mt-3 mb-4">Sort</h5>
                 <select class="form-select mb-4" (change)="onSortSelected($event.target.value)" [value]="shopParams.sort">
-                    <option *ngFor="let sort of sortOptions" [value]="sort.value">{{sort.name}}</option>
+                    <option *ngFor="let sort of sortOptions" [selected]="shopParams.sort === sort.value" [value]="sort.value">{{sort.name}}</option>
                 </select>
                 <h5 class="text-warning ms-3">Brands</h5>
                 <ul class="list-group my-3">
-                    <li class="list-group-item" *ngFor="let brand of brands" [class.active]="brand.id === this.shopParams.brandId" [value]="brand.id" (click)="onBrandSelected(brand.id)">{{brand.name}}</li>
+                    <li class="list-group-item" *ngFor="let brand of brands" [class.active]="brand.id === this.shopParams.brandId" [value]="brand.id" 
+                        (click)="onBrandSelected(brand.id)">{{brand.name}}</li>
                 </ul>
                 <h5 class="text-warning ms-3">Types</h5>
                 <ul class="list-group my-3">
-                    <li class="list-group-item" *ngFor="let type of types" [class.active]="type.id === this.shopParams.typeId" [value]="type.id" (click)="onTypeSelected(type.id)">{{type.name}}</li>
+                    <li class="list-group-item" *ngFor="let type of types" [class.active]="type.id === this.shopParams.typeId" [value]="type.id" 
+                        (click)="onTypeSelected(type.id)">{{type.name}}</li>
                 </ul>
             </ng-container>
         </section>
@@ -37,7 +39,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center" *ngIf="totalCount && totalCount > 0" firstText="&laquo;" lastText="&raquo;">
-                <app-pager [pageSize]="shopParams.pageSize" [totalCount]="totalCount" (pageChanged)="onPageChanged($event)"></app-pager>
+                <app-pager [pageSize]="shopParams.pageSize" [totalCount]="totalCount" [pageNumber]="shopParams.pageNumber" (pageChanged)="onPageChanged($event)"></app-pager>
             </div>
         </section>
     </div>
