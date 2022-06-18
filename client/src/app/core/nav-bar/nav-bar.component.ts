@@ -22,6 +22,7 @@ export class NavBarComponent implements OnInit {
   }
 
   logout() {
+    this.basketService.deleteLocalBasket();
     this.accountService.logout();
   }
 }

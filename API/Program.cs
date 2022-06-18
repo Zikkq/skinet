@@ -23,6 +23,7 @@ namespace API
                 var loggerFactory = services.GetRequiredService<ILoggerFactory>();
                 try
                 {
+                    AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
                     var context = services.GetRequiredService<StoreContext>();
                     await context.Database.MigrateAsync();
                     await StoreContextSeed.SeedData(context, loggerFactory);

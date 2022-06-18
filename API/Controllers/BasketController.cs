@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 using Core.Entities;
 using API.Dto;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
+using Core.Entities.Identity;
+using API.Extensions;
 
 namespace API.Controllers
 {
@@ -11,9 +14,12 @@ namespace API.Controllers
     {
         private readonly IBasketRepository _basketRepository;
         private readonly IMapper _mapper;
-        public BasketController(IBasketRepository basketRepository, IMapper mapper)
+        private readonly UserManager<AppUser> _userManager;
+
+        public BasketController(IBasketRepository basketRepository, IMapper mapper, UserManager<AppUser> userManager)
         {
             _mapper = mapper;
+            _userManager = userManager;
             _basketRepository = basketRepository;
         }
 
@@ -29,6 +35,9 @@ namespace API.Controllers
         {
             var customerBasket = _mapper.Map<CustomerBasketDto, CustomerBasket>(basket);
             var updatedBasket = await _basketRepository.UpdateBasketAsync(customerBasket);
+            var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
+            user.BasketId = updatedBasket.Id;
+            await _userManager.UpdateAsync(user);
             return Ok(updatedBasket);
         }
 

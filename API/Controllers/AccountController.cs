@@ -1,4 +1,3 @@
-using System.Security.Claims;
 using System.Threading.Tasks;
 using API.Dto;
 using API.Errors;
@@ -87,7 +86,8 @@ namespace API.Controllers
             {
                 Email = user.Email,
                 Token = _tokenService.CreateToken(user),
-                DisplayName = user.DisplayName
+                DisplayName = user.DisplayName,
+                BasketId = user.BasketId
             };
         }
 

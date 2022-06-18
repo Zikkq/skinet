@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, of, ReplaySubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { BasketService } from '../basket/basket.service';
+import { Constants } from '../core/constants';
 import { IAddress } from '../shared/models/address';
 import { IUser } from '../shared/models/user';
 
@@ -14,7 +16,15 @@ export class AccountService {
   private currentUserSource = new ReplaySubject<IUser>(1);
   currentUser$ = this.currentUserSource.asObservable();
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private basketService: BasketService) { }
+
+  private loadBasket(basketId: string) {
+    if (basketId) {
+      this.basketService.getBasket(basketId).subscribe({
+        error: error => console.log(error)
+      });
+    }
+  }
 
   loadCurrentUser (token: string) {
     if (token === null) {
@@ -35,6 +45,8 @@ export class AccountService {
     return this.http.post(this.baseUrl + 'account/login', values).pipe(map((user: IUser) => {
       if (user) {
         localStorage.setItem('token', user.token);
+        localStorage.setItem(Constants.basketId, user.basketId);
+        this.loadBasket(user.basketId);
         this.currentUserSource.next(user);
       }
     }));

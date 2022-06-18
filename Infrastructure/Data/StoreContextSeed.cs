@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -16,9 +17,10 @@ namespace Infrastructure.Data
         {
             try
             {
+                var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
                 if (!context.ProductBrands.Any())
                 {
-                    var brandsData = await File.ReadAllTextAsync("../Infrastructure/Data/SeedData/brands.json");
+                    var brandsData = await File.ReadAllTextAsync(path + @"/Data/SeedData/brands.json");
                     var brands = JsonSerializer.Deserialize<IReadOnlyList<ProductBrand>>(brandsData);
                     foreach (var item in brands)
                     {
@@ -28,7 +30,7 @@ namespace Infrastructure.Data
                 }
                 if (!context.ProductTypes.Any())
                 {
-                    var typesData = await File.ReadAllTextAsync("../Infrastructure/Data/SeedData/types.json");
+                    var typesData = await File.ReadAllTextAsync(path + @"/Data/SeedData/types.json");
                     var types = JsonSerializer.Deserialize<IReadOnlyList<ProductType>>(typesData);
                     foreach (var item in types)
                     {
@@ -38,7 +40,7 @@ namespace Infrastructure.Data
                 }
                 if (!context.Products.Any())
                 {
-                    var productsData = await File.ReadAllTextAsync("../Infrastructure/Data/SeedData/products.json");
+                    var productsData = await File.ReadAllTextAsync(path + @"/Data/SeedData/products.json");
                     var products = JsonSerializer.Deserialize<IReadOnlyList<Product>>(productsData);
                     foreach (var item in products)
                     {
@@ -48,7 +50,7 @@ namespace Infrastructure.Data
                 }
                 if (!context.DeliveryMethods.Any())
                 {
-                    var dmData = await File.ReadAllTextAsync("../Infrastructure/Data/SeedData/delivery.json");
+                    var dmData = await File.ReadAllTextAsync(path + @"/Data/SeedData/delivery.json");
                     var methods = JsonSerializer.Deserialize<IReadOnlyList<DeliveryMethod>>(dmData);
                     foreach (var item in methods)
                     {

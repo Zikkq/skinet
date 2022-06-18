@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from './account/account.service';
 import { BasketService } from './basket/basket.service';
+import { Constants } from './core/constants';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,7 @@ export class AppComponent implements OnInit{
   }
 
   private loadBasket() {
-    const basketId = localStorage.getItem('basket_id');
+    const basketId = localStorage.getItem(Constants.basketId);
     if (basketId) {
       this.basketService.getBasket(basketId).subscribe({
         next: () => console.log('initialised basket'),

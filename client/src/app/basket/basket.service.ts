@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Constants } from '../core/constants';
 import { Basket, IBasket, IBasketItem, IBasketTotals } from '../shared/models/basket';
 import { IDeliveryMethod } from '../shared/models/deliveryMethod';
 import { IProduct } from '../shared/models/product';
@@ -95,15 +96,15 @@ export class BasketService {
     }
   }
 
-  deleteLocalBasket(id: string) {
-    this.basketSource.next(null);
+  deleteLocalBasket() {
+    this.basketSource.next(new Basket());
     this.basketTotalSource.next(null);
-    localStorage.removeItem('basket_id');
+    localStorage.removeItem(Constants.basketId);
   }
 
   deleteBasket(basket: IBasket) {
     this.http.delete(this.baseUrl + 'basket?id=' + basket.id).subscribe({next: () => {
-      this.deleteLocalBasket(basket.id);
+      this.deleteLocalBasket();
     }, error: error => console.log(error)
   });
   }
@@ -129,7 +130,7 @@ export class BasketService {
 
   private createBasket(): IBasket {
     const basket = new Basket();
-    localStorage.setItem('basket_id', basket.id);
+    localStorage.setItem(Constants.basketId, basket.id);
     return basket;
   }
 
