@@ -5,4 +5,8 @@ Environment:
 .NET 6.0.3, 
 Angular 13.2.5, 
 Node: 16.14.0, 
-npm: 8.5.3,
+npm: 8.5.3
+
+To start backend-part run ```dotnet run``` command from API folder.
+To start front-end run ```ng serve``` from client folder.
+Then site would appear on localhost:4200
